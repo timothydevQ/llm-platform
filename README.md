@@ -604,3 +604,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 - Automatic canary analysis with statistical significance testing
 <!-- init -->
 <!-- overview -->
+<!-- arch -->
