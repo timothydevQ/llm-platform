@@ -40,3 +40,4 @@ groups:
           severity: warning
         annotations:
           summary: "Request queue depth is high"
+# latency
