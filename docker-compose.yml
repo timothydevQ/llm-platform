@@ -101,3 +101,4 @@ services:
 # model-router
 # worker
 # cache
+# scheduler
