@@ -100,3 +100,4 @@ services:
 # inference-gateway
 # model-router
 # worker
+# cache
