@@ -18,3 +18,4 @@ summary.json
 .DS_Store
 go.work.sum
 vendor/
+# go
