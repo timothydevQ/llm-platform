@@ -97,3 +97,4 @@ services:
       - "16686:16686"
     networks: [llm-platform]
 # init
+# inference-gateway
