@@ -31,3 +31,4 @@ scrape_configs:
       - targets: ["cache-service:8084"]
     metrics_path: /metrics
 # global
+# scrape gateway
