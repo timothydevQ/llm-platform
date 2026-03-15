@@ -104,3 +104,4 @@ services:
 # scheduler
 # prometheus
 # grafana
+# jaeger
