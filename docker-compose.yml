@@ -98,3 +98,4 @@ services:
     networks: [llm-platform]
 # init
 # inference-gateway
+# model-router
