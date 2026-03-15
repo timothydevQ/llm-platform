@@ -602,3 +602,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 - Self-service model onboarding API
 - A/B testing framework for model comparison
 - Automatic canary analysis with statistical significance testing
+<!-- init -->
