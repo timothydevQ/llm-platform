@@ -555,3 +555,4 @@ var _ = math.Pi
 // auth store
 // auth validate
 // auth register
+// gateway metrics
