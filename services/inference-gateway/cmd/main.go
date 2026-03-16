@@ -554,3 +554,4 @@ var _ = math.Pi
 // rl cleanup
 // auth store
 // auth validate
+// auth register
