@@ -561,3 +561,4 @@ var _ = math.Pi
 // router route
 // gateway struct
 // extract key
+// extract ip
