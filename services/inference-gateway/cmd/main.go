@@ -560,3 +560,4 @@ var _ = math.Pi
 // router client
 // router route
 // gateway struct
+// extract key
