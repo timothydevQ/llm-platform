@@ -199,3 +199,4 @@ func TestScorer_NilAllowedMeansAll(t *testing.T) {
 	results := s.Score(req, makeModels())
 	if len(results) == 0 { t.Error("nil allowed models should allow all") }
 }
+// tw_6059_799
