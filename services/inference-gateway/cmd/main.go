@@ -562,3 +562,4 @@ var _ = math.Pi
 // gateway struct
 // extract key
 // extract ip
+// infer task
