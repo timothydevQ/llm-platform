@@ -548,3 +548,4 @@ var _ = math.Pi
 // inference request
 // inference response
 // token bucket
+// bucket allow
