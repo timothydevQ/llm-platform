@@ -556,3 +556,4 @@ var _ = math.Pi
 // auth validate
 // auth register
 // gateway metrics
+// metrics snapshot
