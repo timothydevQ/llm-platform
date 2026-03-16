@@ -547,3 +547,4 @@ var _ = math.Pi
 // task types
 // inference request
 // inference response
+// token bucket
