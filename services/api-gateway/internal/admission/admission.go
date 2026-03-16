@@ -144,3 +144,4 @@ func DeadlineRemaining(req *inferencev1.InferenceRequest) time.Duration {
 	return time.Until(time.UnixMilli(req.DeadlineUnixMs))
 }
 // fx_439
+// fx_440
