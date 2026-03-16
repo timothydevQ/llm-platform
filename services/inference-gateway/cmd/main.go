@@ -559,3 +559,4 @@ var _ = math.Pi
 // metrics snapshot
 // router client
 // router route
+// gateway struct
