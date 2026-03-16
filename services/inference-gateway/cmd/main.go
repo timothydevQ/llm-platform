@@ -557,3 +557,4 @@ var _ = math.Pi
 // auth register
 // gateway metrics
 // metrics snapshot
+// router client
