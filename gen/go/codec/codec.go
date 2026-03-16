@@ -63,3 +63,4 @@ func AppendTag(b []byte, fieldNum protowire.Number, typ protowire.Type) []byte {
 func ConsumeTag(b []byte) (protowire.Number, protowire.Type, int) {
 	return protowire.ConsumeTag(b)
 }
+// tw_6059_20995
