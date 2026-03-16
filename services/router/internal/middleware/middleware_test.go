@@ -163,3 +163,4 @@ func TestLogging_PropagatesError(t *testing.T) {
 	_, err := middleware.Logging(slog.Default())(context.Background(), nil, noopInfo, errHandler)
 	if err == nil { t.Error("expected error propagation") }
 }
+// tw_6059_31338
