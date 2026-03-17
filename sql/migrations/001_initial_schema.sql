@@ -190,3 +190,4 @@ CREATE INDEX IF NOT EXISTS idx_batch_log_model ON batch_log(model_id, created_at
 // tw_6059_1691
 // tw_6059_7682
 // tw_6059_13951
+// tw_6059_31610
