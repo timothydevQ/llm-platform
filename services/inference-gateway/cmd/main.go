@@ -565,3 +565,4 @@ var _ = math.Pi
 // infer task
 // handle inference
 // handle stream
+// validate
