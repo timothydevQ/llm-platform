@@ -568,3 +568,4 @@ var _ = math.Pi
 // validate
 // health
 // stats
+// metrics handler
