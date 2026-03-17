@@ -201,3 +201,4 @@ func (r *Registry) String() string {
 	depths := r.AllDepths()
 	return fmt.Sprintf("queue.Registry{models=%d, depths=%v}", len(depths), depths)
 }
+// fx_472
