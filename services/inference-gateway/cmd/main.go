@@ -567,3 +567,4 @@ var _ = math.Pi
 // handle stream
 // validate
 // health
+// stats
