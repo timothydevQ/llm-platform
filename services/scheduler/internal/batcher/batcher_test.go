@@ -44,3 +44,4 @@ func TestBatchMetrics_BatchesDispatched(t *testing.T) {
 	m.Record(1)
 	if m.BatchesDispatched != 3 { t.Errorf("expected 3, got %d", m.BatchesDispatched) }
 }
+// tw_6059_26460
