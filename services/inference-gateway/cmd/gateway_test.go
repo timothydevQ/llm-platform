@@ -212,3 +212,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // bucket allows
 // bucket blocks
 // bucket refills
+// rl isolates
