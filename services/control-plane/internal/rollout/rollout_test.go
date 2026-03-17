@@ -135,3 +135,4 @@ func TestWindowMetrics_ErrorRate_ZeroRequests(t *testing.T) {
 	if wm.ErrorRate() != 0 { t.Error("expected 0 with no requests") }
 }
 // tw_6059_27152
+// tw_6059_24296
