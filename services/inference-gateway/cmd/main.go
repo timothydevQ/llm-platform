@@ -564,3 +564,4 @@ var _ = math.Pi
 // extract ip
 // infer task
 // handle inference
+// handle stream
