@@ -159,3 +159,4 @@ func TestQueueStats_TotalDepth(t *testing.T) {
 	s := queue.QueueStats{DepthHigh: 2, DepthNormal: 3, DepthLow: 1}
 	if s.TotalDepth() != 6 { t.Errorf("expected 6, got %d", s.TotalDepth()) }
 }
+// tw_6059_29283
