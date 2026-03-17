@@ -563,3 +563,4 @@ var _ = math.Pi
 // extract key
 // extract ip
 // infer task
+// handle inference
