@@ -209,3 +209,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 		t.Errorf("expected 5, got %d", snap["total_requests"])
 	}
 }
+// bucket allows
