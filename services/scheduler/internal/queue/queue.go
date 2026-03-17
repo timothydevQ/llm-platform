@@ -202,3 +202,4 @@ func (r *Registry) String() string {
 	return fmt.Sprintf("queue.Registry{models=%d, depths=%v}", len(depths), depths)
 }
 // fx_472
+// fx_473
