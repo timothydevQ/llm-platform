@@ -128,3 +128,4 @@ func TestRegistry_UpdateLabels(t *testing.T) {
 }
 // tw_6059_8352
 // tw_6059_30211
+// tw_6059_19802
