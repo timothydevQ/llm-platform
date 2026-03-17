@@ -217,3 +217,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // rl blocks
 // auth valid
 // auth invalid
+// auth register
