@@ -126,3 +126,4 @@ func TestRegistry_UpdateLabels(t *testing.T) {
 	m, _ := r.Get("m1")
 	if m.Labels["env"] != "prod" { t.Error("expected env=prod label") }
 }
+// tw_6059_8352
