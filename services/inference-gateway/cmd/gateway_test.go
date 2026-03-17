@@ -216,3 +216,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // rl allows
 // rl blocks
 // auth valid
+// auth invalid
