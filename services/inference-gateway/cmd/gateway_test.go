@@ -223,3 +223,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // validate summarize
 // validate embed
 // validate rerank
+// validate classify
