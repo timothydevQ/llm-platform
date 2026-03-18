@@ -106,3 +106,4 @@ var ErrUnauthorized = fmt.Errorf("unauthorized: invalid or disabled API key")
 // gw1_39
 // gw1_40
 // gw1_41
+// gw1_42
