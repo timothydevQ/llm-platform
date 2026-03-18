@@ -218,3 +218,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // auth valid
 // auth invalid
 // auth register
+// auth platform
