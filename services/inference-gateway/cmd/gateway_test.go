@@ -222,3 +222,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // validate chat
 // validate summarize
 // validate embed
+// validate rerank
