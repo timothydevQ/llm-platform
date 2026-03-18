@@ -103,3 +103,4 @@ func (s *Store) Invalidate(keyHash string) {
 var ErrUnauthorized = fmt.Errorf("unauthorized: invalid or disabled API key")
 // tw_6059_5797
 // tw_6059_17488
+// tw_6059_7920
