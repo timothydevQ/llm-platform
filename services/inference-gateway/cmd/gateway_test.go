@@ -228,3 +228,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // unique ids
 // id length
 // getenv
+// metrics snapshot
