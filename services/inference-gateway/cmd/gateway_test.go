@@ -220,3 +220,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // auth register
 // auth platform
 // validate chat
+// validate summarize
