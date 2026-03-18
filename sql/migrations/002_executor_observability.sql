@@ -134,3 +134,4 @@ CREATE VIEW IF NOT EXISTS model_health_1h AS
     WHERE datetime(window_start) >= datetime('now', '-1 hour')
     GROUP BY model_id;
 // tw_6059_7417
+// tw_6059_25382
