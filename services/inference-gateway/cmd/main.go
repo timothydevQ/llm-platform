@@ -544,3 +544,30 @@ func main() {
 }
 
 var _ = math.Pi
+// task types
+// inference request
+// inference response
+// token bucket
+// bucket allow
+// rate limiter
+// rl allow
+// rl cleanup
+// auth store
+// auth validate
+// auth register
+// gateway metrics
+// metrics snapshot
+// router client
+// router route
+// gateway struct
+// extract key
+// extract ip
+// infer task
+// handle inference
+// handle stream
+// validate
+// health
+// stats
+// metrics handler
+// routes
+// server

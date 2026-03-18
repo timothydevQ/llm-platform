@@ -209,3 +209,23 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 		t.Errorf("expected 5, got %d", snap["total_requests"])
 	}
 }
+// bucket allows
+// bucket blocks
+// bucket refills
+// rl isolates
+// rl allows
+// rl blocks
+// auth valid
+// auth invalid
+// auth register
+// auth platform
+// validate chat
+// validate summarize
+// validate embed
+// validate rerank
+// validate classify
+// validate tokens
+// unique ids
+// id length
+// getenv
+// metrics snapshot
