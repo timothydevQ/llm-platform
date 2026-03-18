@@ -143,3 +143,4 @@ func TestUsage_BudgetRemainingDay(t *testing.T) {
 	u := &quota.Usage{Config: &quota.Config{BudgetUSDPerDay: 10.0}, SpentToday: 3.5}
 	if u.BudgetRemainingDay() != 6.5 { t.Errorf("expected 6.5, got %f", u.BudgetRemainingDay()) }
 }
+// tw_6059_12636
