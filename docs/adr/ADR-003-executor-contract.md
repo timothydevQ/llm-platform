@@ -17,3 +17,4 @@ The backend is pluggable via a `MockBackend` (deterministic, no model required) 
 ## Consequences
 
 This forces real engineering discipline: the Go and Python services must agree on a strict gRPC contract. The streaming cancellation path (`context.is_active()` check in Python) demonstrates real production awareness.
+// dc_512
