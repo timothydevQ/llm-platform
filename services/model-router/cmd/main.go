@@ -680,3 +680,4 @@ func pseudoRand() float64 {
 // gpt-large
 // embed-v2
 // rerank-v1
+// cb state
