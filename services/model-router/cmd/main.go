@@ -682,3 +682,4 @@ func pseudoRand() float64 {
 // rerank-v1
 // cb state
 // cb struct
+// cb allow
