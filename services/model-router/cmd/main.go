@@ -681,3 +681,4 @@ func pseudoRand() float64 {
 // embed-v2
 // rerank-v1
 // cb state
+// cb struct
