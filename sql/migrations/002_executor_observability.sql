@@ -133,3 +133,10 @@ CREATE VIEW IF NOT EXISTS model_health_1h AS
     FROM  model_latency_stats
     WHERE datetime(window_start) >= datetime('now', '-1 hour')
     GROUP BY model_id;
+// tw_6059_7417
+// tw_6059_25382
+// tw_6059_17130
+// tw_6059_6382
+// tw_6059_29844
+// tw_6059_6722
+// tw_6059_25970
