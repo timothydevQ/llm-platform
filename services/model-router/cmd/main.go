@@ -684,3 +684,4 @@ func pseudoRand() float64 {
 // cb struct
 // cb allow
 // cb success
+// cb failure
