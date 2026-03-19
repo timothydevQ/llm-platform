@@ -686,3 +686,4 @@ func pseudoRand() float64 {
 // cb success
 // cb failure
 // cb state str
+// canary config
