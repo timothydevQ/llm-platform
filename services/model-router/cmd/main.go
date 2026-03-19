@@ -674,3 +674,4 @@ func pseudoRand() float64 {
 	return val
 // task types
 // model struct
+// model registry
