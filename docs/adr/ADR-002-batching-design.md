@@ -108,3 +108,4 @@ If throughput benchmarks show serialisation as a bottleneck:
 1. Run `scripts/generate-proto.sh` to generate protobuf Go stubs
 2. Remove the JSON codec registration
 3. No other application code changes required (message field names are identical)
+// dc_506
