@@ -672,3 +672,4 @@ func pseudoRand() float64 {
 	rand.Read(b)
 	val := float64(b[0])/255.0
 	return val
+// task types
