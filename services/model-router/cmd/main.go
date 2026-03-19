@@ -676,3 +676,4 @@ func pseudoRand() float64 {
 // model struct
 // model registry
 // gpt-small
+// gpt-medium
