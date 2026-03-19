@@ -673,3 +673,4 @@ func pseudoRand() float64 {
 	val := float64(b[0])/255.0
 	return val
 // task types
+// model struct
