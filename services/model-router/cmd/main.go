@@ -679,3 +679,4 @@ func pseudoRand() float64 {
 // gpt-medium
 // gpt-large
 // embed-v2
+// rerank-v1
