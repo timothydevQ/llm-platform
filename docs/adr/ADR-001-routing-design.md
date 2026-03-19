@@ -70,3 +70,4 @@ When a canary rollout is active, the base model's effective weight is `(1 - cana
 
 Monitor `router_fallbacks` and `router_cb_blocked` metrics. If fallback rate exceeds 2%, revisit the health score penalty multiplier (currently `× 5`).
 // dc_499
+// dc_500
