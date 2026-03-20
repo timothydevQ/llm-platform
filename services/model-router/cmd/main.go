@@ -705,3 +705,4 @@ func pseudoRand() float64 {
 // cache client
 // route handler
 // cost estimate
+// canary handler
