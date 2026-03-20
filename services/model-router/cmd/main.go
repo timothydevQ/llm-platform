@@ -700,3 +700,4 @@ func pseudoRand() float64 {
 // fallback routing
 // canary routing
 // record success
+// cb states
