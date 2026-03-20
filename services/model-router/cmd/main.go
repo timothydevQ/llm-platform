@@ -689,3 +689,4 @@ func pseudoRand() float64 {
 // canary config
 // canary configure
 // canary use
+// routing decision
