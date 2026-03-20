@@ -697,3 +697,4 @@ func pseudoRand() float64 {
 // tier latency
 // tier prompt len
 // route method
+// fallback routing
