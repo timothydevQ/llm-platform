@@ -699,3 +699,4 @@ func pseudoRand() float64 {
 // route method
 // fallback routing
 // canary routing
+// record success
