@@ -56,3 +56,4 @@
 2. **Balanced routing reduces cost by 90.8%** vs always using the large model, with p99 latency remaining within SLO.
 3. **Canary auto-rollback triggers within 2 minutes** of a regression exceeding the p99 ratio threshold.
 4. **Circuit breaker recovery is seamless** — clients see fallback responses during the 20s timeout window, not errors.
+// dc_522
