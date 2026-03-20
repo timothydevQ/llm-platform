@@ -180,3 +180,18 @@ class SentenceTransformersBackend(Backend):
 def _sigmoid(x: np.ndarray) -> np.ndarray:
     """Numerically stable sigmoid."""
     return 1.0 / (1.0 + np.exp(-np.clip(x, -500, 500)))
+// tw_6059_23931
+// tw_6059_11443
+// tw_6059_20336
+// tw_6059_23571
+// tw_6059_3367
+// tw_6059_29503
+// tw_6059_26986
+// tw_6059_19011
+// tw_6059_29150
+// tw_6059_23155
+// tw_6059_32765
+// tw_6059_17165
+// tw_6059_5808
+// tw_6059_16909
+// tw_6059_21345
