@@ -690,3 +690,4 @@ func pseudoRand() float64 {
 // canary configure
 // canary use
 // routing decision
+// router struct
