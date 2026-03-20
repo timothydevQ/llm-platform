@@ -695,3 +695,4 @@ func pseudoRand() float64 {
 // select tier
 // tier budget
 // tier latency
+// tier prompt len
