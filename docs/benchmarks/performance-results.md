@@ -58,3 +58,4 @@
 4. **Circuit breaker recovery is seamless** — clients see fallback responses during the 20s timeout window, not errors.
 // dc_522
 // dc_523
+// dc_524
