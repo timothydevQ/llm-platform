@@ -141,3 +141,4 @@ CREATE VIEW IF NOT EXISTS model_health_1h AS
 // tw_6059_6722
 // tw_6059_25970
 // tw_6059_20557
+// tw_6059_12192
