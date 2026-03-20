@@ -698,3 +698,4 @@ func pseudoRand() float64 {
 // tier prompt len
 // route method
 // fallback routing
+// canary routing
