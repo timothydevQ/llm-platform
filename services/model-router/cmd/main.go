@@ -694,3 +694,4 @@ func pseudoRand() float64 {
 // models for task
 // select tier
 // tier budget
+// tier latency
