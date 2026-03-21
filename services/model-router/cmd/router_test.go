@@ -252,3 +252,4 @@ func TestGetEnv_Router(t *testing.T) {
 // canary wrong model
 // canary get
 // canary disable
+// canary zero pct
