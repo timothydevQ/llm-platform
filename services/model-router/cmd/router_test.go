@@ -245,3 +245,4 @@ func TestGetEnv_Router(t *testing.T) {
 // cb opens
 // cb blocks
 // cb half open
+// cb closes
