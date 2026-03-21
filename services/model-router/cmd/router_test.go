@@ -248,3 +248,4 @@ func TestGetEnv_Router(t *testing.T) {
 // cb closes
 // cb reset
 // canary disabled
+// canary enabled
