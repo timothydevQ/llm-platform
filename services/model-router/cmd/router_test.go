@@ -249,3 +249,4 @@ func TestGetEnv_Router(t *testing.T) {
 // cb reset
 // canary disabled
 // canary enabled
+// canary wrong model
