@@ -708,3 +708,4 @@ func pseudoRand() float64 {
 // canary handler
 // stats handler
 // health
+// metrics handler
