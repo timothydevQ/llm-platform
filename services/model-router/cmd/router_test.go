@@ -250,3 +250,4 @@ func TestGetEnv_Router(t *testing.T) {
 // canary disabled
 // canary enabled
 // canary wrong model
+// canary get
