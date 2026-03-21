@@ -707,3 +707,4 @@ func pseudoRand() float64 {
 // cost estimate
 // canary handler
 // stats handler
+// health
