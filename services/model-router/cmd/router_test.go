@@ -257,3 +257,4 @@ func TestGetEnv_Router(t *testing.T) {
 // route embed
 // route rerank
 // fallback
+// unknown task
