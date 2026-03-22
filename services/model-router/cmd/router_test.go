@@ -262,3 +262,4 @@ func TestGetEnv_Router(t *testing.T) {
 // cb states
 // tier low budget
 // tier high budget
+// tier short prompt
