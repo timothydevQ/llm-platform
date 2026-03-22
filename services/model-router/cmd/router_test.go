@@ -266,3 +266,4 @@ func TestGetEnv_Router(t *testing.T) {
 // tier long prompt
 // tier latency
 // record
+// getenv
