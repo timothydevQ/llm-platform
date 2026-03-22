@@ -256,3 +256,4 @@ func TestGetEnv_Router(t *testing.T) {
 // route chat
 // route embed
 // route rerank
+// fallback
