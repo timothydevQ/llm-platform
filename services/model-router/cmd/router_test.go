@@ -255,3 +255,4 @@ func TestGetEnv_Router(t *testing.T) {
 // canary zero pct
 // route chat
 // route embed
+// route rerank
