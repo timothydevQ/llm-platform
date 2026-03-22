@@ -240,3 +240,30 @@ func TestGetEnv_Router(t *testing.T) {
 	if getEnv("TEST_ROUTER_KEY", "fb") != "val" { t.Error("expected val") }
 	if getEnv("ROUTER_MISSING_XYZ", "fb") != "fb" { t.Error("expected fallback") }
 }
+// cb initial
+// cb allows
+// cb opens
+// cb blocks
+// cb half open
+// cb closes
+// cb reset
+// canary disabled
+// canary enabled
+// canary wrong model
+// canary get
+// canary disable
+// canary zero pct
+// route chat
+// route embed
+// route rerank
+// fallback
+// unknown task
+// all cb open
+// cb states
+// tier low budget
+// tier high budget
+// tier short prompt
+// tier long prompt
+// tier latency
+// record
+// getenv

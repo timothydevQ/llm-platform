@@ -672,3 +672,40 @@ func pseudoRand() float64 {
 	rand.Read(b)
 	val := float64(b[0])/255.0
 	return val
+// task types
+// model struct
+// model registry
+// gpt-small
+// gpt-medium
+// gpt-large
+// embed-v2
+// rerank-v1
+// cb state
+// cb struct
+// cb allow
+// cb success
+// cb failure
+// cb state str
+// canary config
+// canary configure
+// canary use
+// routing decision
+// router struct
+// models for task
+// select tier
+// tier budget
+// tier latency
+// tier prompt len
+// route method
+// fallback routing
+// canary routing
+// record success
+// cb states
+// worker client
+// cache client
+// route handler
+// cost estimate
+// canary handler
+// stats handler
+// health
+// metrics handler
