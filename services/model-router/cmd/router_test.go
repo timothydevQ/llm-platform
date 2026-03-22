@@ -264,3 +264,4 @@ func TestGetEnv_Router(t *testing.T) {
 // tier high budget
 // tier short prompt
 // tier long prompt
+// tier latency
