@@ -479,3 +479,4 @@ func main() {
 // queue depths
 // priority queue
 // pq enqueue
+// pq dequeue
