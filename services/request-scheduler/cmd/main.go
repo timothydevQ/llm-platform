@@ -477,3 +477,4 @@ func main() {
 // dispatch task
 // immediate dispatch
 // queue depths
+// priority queue
