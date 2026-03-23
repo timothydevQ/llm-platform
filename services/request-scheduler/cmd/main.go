@@ -473,3 +473,4 @@ func main() {
 // default config
 // adaptive batcher
 // enqueue
+// batch loop
