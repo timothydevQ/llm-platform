@@ -474,3 +474,4 @@ func main() {
 // adaptive batcher
 // enqueue
 // batch loop
+// dispatch task
