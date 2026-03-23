@@ -468,3 +468,4 @@ func main() {
 }
 // queued request
 // batch result
+// batch struct
