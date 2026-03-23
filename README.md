@@ -619,3 +619,4 @@ push to main
 - Self-service model onboarding API with capability testing
 - A/B testing framework with statistical significance testing for canary evaluation
 - Priority-aware spend enforcement: premium tenants continue when economy tenants are cut
+// ch_559
