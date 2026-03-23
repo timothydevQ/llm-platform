@@ -471,3 +471,4 @@ func main() {
 // batch struct
 // batcher config
 // default config
+// adaptive batcher
