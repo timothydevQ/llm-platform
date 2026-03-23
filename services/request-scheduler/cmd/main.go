@@ -475,3 +475,4 @@ func main() {
 // enqueue
 // batch loop
 // dispatch task
+// immediate dispatch
