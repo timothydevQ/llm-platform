@@ -47,3 +47,5 @@ echo ""
 echo "NOTE: The generated code in gen/go/ uses the JSON codec (gen/go/codec/)."
 echo "In production, replace the hand-written stubs with protoc output and"
 echo "add the google.golang.org/protobuf dependency."
+// tw_6059_11359
+// tw_6059_13659
