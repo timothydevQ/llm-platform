@@ -243,3 +243,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // batcher single
 // batcher multi
 // batcher max size
+// batcher depths
