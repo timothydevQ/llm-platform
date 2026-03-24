@@ -620,3 +620,4 @@ push to main
 - A/B testing framework with statistical significance testing for canary evaluation
 - Priority-aware spend enforcement: premium tenants continue when economy tenants are cut
 // ch_563
+// ch_564
