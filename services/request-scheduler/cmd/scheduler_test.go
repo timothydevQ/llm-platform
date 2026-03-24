@@ -245,3 +245,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // batcher max size
 // batcher depths
 // metrics avg
+// metrics calc
