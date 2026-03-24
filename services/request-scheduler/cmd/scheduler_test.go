@@ -242,3 +242,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // pq drain order
 // batcher single
 // batcher multi
+// batcher max size
