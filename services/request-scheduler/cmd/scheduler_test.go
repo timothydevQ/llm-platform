@@ -234,3 +234,4 @@ func TestNewID_Scheduler(t *testing.T) {
 }
 // pq enqueue
 // pq high first
+// pq normal before low
