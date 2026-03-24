@@ -241,3 +241,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // pq len by priority
 // pq drain order
 // batcher single
+// batcher multi
