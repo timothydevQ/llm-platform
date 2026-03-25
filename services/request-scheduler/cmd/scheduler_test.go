@@ -246,3 +246,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // batcher depths
 // metrics avg
 // metrics calc
+// default config
