@@ -247,3 +247,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // metrics avg
 // metrics calc
 // default config
+// getenv
