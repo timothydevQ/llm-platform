@@ -466,3 +466,21 @@ func main() {
 	defer cancel()
 	srv.Shutdown(ctx)
 }
+// queued request
+// batch result
+// batch struct
+// batcher config
+// default config
+// adaptive batcher
+// enqueue
+// batch loop
+// dispatch task
+// immediate dispatch
+// queue depths
+// priority queue
+// pq enqueue
+// pq dequeue
+// scheduler service
+// submit
+// scheduler stats
+// handlers
