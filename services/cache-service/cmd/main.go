@@ -438,3 +438,4 @@ func main() {
 // lru helpers
 // evict expired
 // cache metrics
+// hit rate
