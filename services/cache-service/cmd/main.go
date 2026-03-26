@@ -434,3 +434,4 @@ func main() {
 // lru get
 // lru set
 // lru evict
+// lru delete
