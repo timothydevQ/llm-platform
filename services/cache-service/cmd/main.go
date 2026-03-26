@@ -441,3 +441,4 @@ func main() {
 // hit rate
 // metrics snapshot
 // cache service
+// svc get
