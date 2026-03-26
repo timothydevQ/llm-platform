@@ -439,3 +439,4 @@ func main() {
 // evict expired
 // cache metrics
 // hit rate
+// metrics snapshot
