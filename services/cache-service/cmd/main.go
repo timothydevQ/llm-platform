@@ -435,3 +435,4 @@ func main() {
 // lru set
 // lru evict
 // lru delete
+// lru helpers
