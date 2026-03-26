@@ -436,3 +436,4 @@ func main() {
 // lru evict
 // lru delete
 // lru helpers
+// evict expired
