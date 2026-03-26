@@ -437,3 +437,4 @@ func main() {
 // lru delete
 // lru helpers
 // evict expired
+// cache metrics
