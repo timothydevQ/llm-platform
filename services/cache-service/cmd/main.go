@@ -433,3 +433,4 @@ func main() {
 // lru cache
 // lru get
 // lru set
+// lru evict
