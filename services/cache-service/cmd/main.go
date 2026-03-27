@@ -444,3 +444,4 @@ func main() {
 // svc get
 // svc set
 // svc delete
+// svc stats
