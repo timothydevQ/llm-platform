@@ -207,3 +207,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // expired
 // evicts lru
 // update front
+// delete
