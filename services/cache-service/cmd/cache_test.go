@@ -209,3 +209,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // update front
 // delete
 // delete nonexistent
+// len
