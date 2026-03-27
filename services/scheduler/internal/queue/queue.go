@@ -217,3 +217,4 @@ func (r *Registry) String() string {
 // sq_192
 // sq_193
 // sq_194
+// sq_195
