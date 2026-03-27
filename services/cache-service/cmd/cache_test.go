@@ -208,3 +208,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // evicts lru
 // update front
 // delete
+// delete nonexistent
