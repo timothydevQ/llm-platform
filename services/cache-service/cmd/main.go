@@ -443,3 +443,4 @@ func main() {
 // cache service
 // svc get
 // svc set
+// svc delete
