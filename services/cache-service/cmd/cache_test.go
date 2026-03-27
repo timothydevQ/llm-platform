@@ -213,3 +213,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // hit rate
 // capacity one
 // concurrent
+// metrics no req
