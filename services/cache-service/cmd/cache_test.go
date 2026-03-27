@@ -211,3 +211,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // delete nonexistent
 // len
 // hit rate
+// capacity one
