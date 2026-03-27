@@ -202,3 +202,4 @@ func TestGetEnv_Cache(t *testing.T) {
 	t.Setenv("TEST_CACHE_KEY", "val")
 	if getEnv("TEST_CACHE_KEY", "fb") != "val" { t.Error("expected val") }
 }
+// set get
