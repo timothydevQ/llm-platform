@@ -204,3 +204,4 @@ func TestGetEnv_Cache(t *testing.T) {
 }
 // set get
 // miss
+// expired
