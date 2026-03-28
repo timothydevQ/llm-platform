@@ -224,3 +224,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // svc stats
 // prompt hits
 // min helper
+// getenv
