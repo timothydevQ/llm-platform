@@ -219,3 +219,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // svc set get
 // svc miss
 // svc embed
+// svc response
