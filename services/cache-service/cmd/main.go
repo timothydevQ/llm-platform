@@ -427,3 +427,23 @@ func main() {
 	defer cancel()
 	srv.Shutdown(ctx)
 }
+// cache entry
+// is expired
+// lru node
+// lru cache
+// lru get
+// lru set
+// lru evict
+// lru delete
+// lru helpers
+// evict expired
+// cache metrics
+// hit rate
+// metrics snapshot
+// cache service
+// svc get
+// svc set
+// svc delete
+// svc stats
+// handlers
+// health

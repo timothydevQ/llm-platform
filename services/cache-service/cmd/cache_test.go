@@ -202,3 +202,26 @@ func TestGetEnv_Cache(t *testing.T) {
 	t.Setenv("TEST_CACHE_KEY", "val")
 	if getEnv("TEST_CACHE_KEY", "fb") != "val" { t.Error("expected val") }
 }
+// set get
+// miss
+// expired
+// evicts lru
+// update front
+// delete
+// delete nonexistent
+// len
+// hit rate
+// capacity one
+// concurrent
+// metrics no req
+// metrics all hits
+// metrics snapshot
+// svc set get
+// svc miss
+// svc embed
+// svc response
+// svc delete
+// svc stats
+// prompt hits
+// min helper
+// getenv
