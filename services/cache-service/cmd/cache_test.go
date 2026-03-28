@@ -218,3 +218,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // metrics snapshot
 // svc set get
 // svc miss
+// svc embed
