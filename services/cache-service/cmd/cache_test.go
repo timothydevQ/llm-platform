@@ -222,3 +222,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // svc response
 // svc delete
 // svc stats
+// prompt hits
