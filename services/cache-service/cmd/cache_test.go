@@ -221,3 +221,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // svc embed
 // svc response
 // svc delete
+// svc stats
