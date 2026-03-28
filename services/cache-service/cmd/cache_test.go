@@ -216,3 +216,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // metrics no req
 // metrics all hits
 // metrics snapshot
+// svc set get
