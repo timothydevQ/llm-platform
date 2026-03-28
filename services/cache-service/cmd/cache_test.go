@@ -215,3 +215,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // concurrent
 // metrics no req
 // metrics all hits
+// metrics snapshot
