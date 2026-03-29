@@ -470,3 +470,4 @@ func main() {
 // set jitter
 // infer
 // chat response
+// embedding
