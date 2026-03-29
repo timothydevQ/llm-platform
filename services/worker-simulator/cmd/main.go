@@ -471,3 +471,4 @@ func main() {
 // infer
 // chat response
 // embedding
+// rerank
