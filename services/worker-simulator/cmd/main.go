@@ -467,3 +467,4 @@ func main() {
 // worker status
 // worker struct
 // set status
+// set jitter
