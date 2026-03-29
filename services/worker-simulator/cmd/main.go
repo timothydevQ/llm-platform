@@ -461,3 +461,4 @@ func main() {
 }
 // task types
 // infer request
+// infer response
