@@ -474,3 +474,4 @@ func main() {
 // rerank
 // classify
 // estimate tokens
+// infer handler
