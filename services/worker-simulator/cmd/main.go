@@ -460,3 +460,4 @@ func main() {
 	srv.Shutdown(ctx)
 }
 // task types
+// infer request
