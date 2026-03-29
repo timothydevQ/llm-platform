@@ -472,3 +472,4 @@ func main() {
 // chat response
 // embedding
 // rerank
+// classify
