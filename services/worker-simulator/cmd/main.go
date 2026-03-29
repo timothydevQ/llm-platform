@@ -468,3 +468,4 @@ func main() {
 // worker struct
 // set status
 // set jitter
+// infer
