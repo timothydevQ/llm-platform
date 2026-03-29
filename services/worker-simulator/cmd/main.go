@@ -465,3 +465,4 @@ func main() {
 // model config
 // model configs
 // worker status
+// worker struct
