@@ -466,3 +466,4 @@ func main() {
 // model configs
 // worker status
 // worker struct
+// set status
