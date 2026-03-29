@@ -464,3 +464,4 @@ func main() {
 // infer response
 // model config
 // model configs
+// worker status
