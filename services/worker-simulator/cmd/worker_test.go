@@ -245,3 +245,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // embed normalized
 // embed deterministic
 // embed different
+// rerank scores
