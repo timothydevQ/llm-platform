@@ -477,3 +477,4 @@ func main() {
 // infer handler
 // status handler
 // stats handler
+// health
