@@ -478,3 +478,4 @@ func main() {
 // status handler
 // stats handler
 // health
+// readiness
