@@ -251,3 +251,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // rerank range
 // classify positive
 // classify negative
+// classify harmful
