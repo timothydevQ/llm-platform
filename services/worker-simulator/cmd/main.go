@@ -475,3 +475,4 @@ func main() {
 // classify
 // estimate tokens
 // infer handler
+// status handler
