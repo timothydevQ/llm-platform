@@ -246,3 +246,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // embed deterministic
 // embed different
 // rerank scores
+// rerank relevant
