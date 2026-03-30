@@ -476,3 +476,4 @@ func main() {
 // estimate tokens
 // infer handler
 // status handler
+// stats handler
