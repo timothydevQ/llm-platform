@@ -244,3 +244,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // embed length
 // embed normalized
 // embed deterministic
+// embed different
