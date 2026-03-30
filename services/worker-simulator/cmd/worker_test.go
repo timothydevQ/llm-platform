@@ -248,3 +248,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // rerank scores
 // rerank relevant
 // rerank empty
+// rerank range
