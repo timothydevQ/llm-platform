@@ -479,3 +479,4 @@ func main() {
 // stats handler
 // health
 // readiness
+// metrics
