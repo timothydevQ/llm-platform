@@ -241,3 +241,4 @@ func TestGetEnv_Worker(t *testing.T) {
 	t.Setenv("TEST_WORKER_KEY", "wval")
 	if getEnv("TEST_WORKER_KEY", "fb") != "wval" { t.Error("expected wval") }
 }
+// embed length
