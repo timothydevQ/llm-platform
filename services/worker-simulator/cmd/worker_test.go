@@ -242,3 +242,4 @@ func TestGetEnv_Worker(t *testing.T) {
 	if getEnv("TEST_WORKER_KEY", "fb") != "wval" { t.Error("expected wval") }
 }
 // embed length
+// embed normalized
