@@ -265,3 +265,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // metrics
 // error metric
 // avg latency
+// tps
