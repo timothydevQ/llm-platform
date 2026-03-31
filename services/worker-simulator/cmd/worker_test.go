@@ -264,3 +264,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // worker degraded
 // metrics
 // error metric
+// avg latency
