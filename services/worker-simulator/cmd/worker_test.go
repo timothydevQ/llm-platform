@@ -262,3 +262,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // infer classify
 // worker down
 // worker degraded
+// metrics
