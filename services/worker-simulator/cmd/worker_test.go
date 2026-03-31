@@ -257,3 +257,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // tokens empty
 // tokens longer
 // infer chat
+// infer embed
