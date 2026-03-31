@@ -261,3 +261,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // infer rerank
 // infer classify
 // worker down
+// worker degraded
