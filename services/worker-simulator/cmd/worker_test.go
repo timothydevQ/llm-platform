@@ -258,3 +258,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // tokens longer
 // infer chat
 // infer embed
+// infer rerank
