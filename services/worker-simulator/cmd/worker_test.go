@@ -260,3 +260,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // infer embed
 // infer rerank
 // infer classify
+// worker down
