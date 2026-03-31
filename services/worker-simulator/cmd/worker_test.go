@@ -263,3 +263,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // worker down
 // worker degraded
 // metrics
+// error metric
