@@ -256,3 +256,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // tokens non empty
 // tokens empty
 // tokens longer
+// infer chat
