@@ -259,3 +259,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // infer chat
 // infer embed
 // infer rerank
+// infer classify
