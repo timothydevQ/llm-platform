@@ -36,3 +36,4 @@ scrape_configs:
 # router scrape
 # worker scrape
 # cache scrape
+# scheduler scrape
