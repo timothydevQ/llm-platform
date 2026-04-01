@@ -44,3 +44,4 @@ groups:
 # cache miss
 # worker error
 # cb rejections
+# queue depth
