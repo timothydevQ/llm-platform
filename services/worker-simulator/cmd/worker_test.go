@@ -268,3 +268,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // tps
 // unknown model
 // min helper
+// getenv
