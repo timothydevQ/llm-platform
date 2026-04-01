@@ -34,3 +34,4 @@ scrape_configs:
 # scrape gateway
 # all scrapes
 # router scrape
+# worker scrape
