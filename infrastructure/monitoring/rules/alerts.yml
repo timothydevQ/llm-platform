@@ -43,3 +43,4 @@ groups:
 # latency
 # cache miss
 # worker error
+# cb rejections
