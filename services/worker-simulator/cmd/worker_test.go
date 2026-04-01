@@ -241,3 +241,31 @@ func TestGetEnv_Worker(t *testing.T) {
 	t.Setenv("TEST_WORKER_KEY", "wval")
 	if getEnv("TEST_WORKER_KEY", "fb") != "wval" { t.Error("expected wval") }
 }
+// embed length
+// embed normalized
+// embed deterministic
+// embed different
+// rerank scores
+// rerank relevant
+// rerank empty
+// rerank range
+// classify positive
+// classify negative
+// classify harmful
+// classify neutral
+// tokens non empty
+// tokens empty
+// tokens longer
+// infer chat
+// infer embed
+// infer rerank
+// infer classify
+// worker down
+// worker degraded
+// metrics
+// error metric
+// avg latency
+// tps
+// unknown model
+// min helper
+// getenv

@@ -459,3 +459,24 @@ func main() {
 	defer cancel()
 	srv.Shutdown(ctx)
 }
+// task types
+// infer request
+// infer response
+// model config
+// model configs
+// worker status
+// worker struct
+// set status
+// set jitter
+// infer
+// chat response
+// embedding
+// rerank
+// classify
+// estimate tokens
+// infer handler
+// status handler
+// stats handler
+// health
+// readiness
+// metrics
