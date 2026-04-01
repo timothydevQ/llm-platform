@@ -225,3 +225,4 @@ spec:
 # configmap
 # gateway deploy
 # gateway hpa
+# router deploy
