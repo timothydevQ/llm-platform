@@ -33,3 +33,4 @@ scrape_configs:
 # global
 # scrape gateway
 # all scrapes
+# router scrape
