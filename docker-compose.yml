@@ -105,3 +105,4 @@ services:
 # prometheus
 # grafana
 # jaeger
+# volumes
