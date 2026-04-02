@@ -229,3 +229,4 @@ spec:
 # worker deploy
 # worker hpa
 # cache deploy
+# probes
