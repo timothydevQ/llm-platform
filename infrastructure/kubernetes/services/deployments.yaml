@@ -226,3 +226,4 @@ spec:
 # gateway deploy
 # gateway hpa
 # router deploy
+# worker deploy
