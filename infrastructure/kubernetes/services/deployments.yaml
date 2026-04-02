@@ -228,3 +228,4 @@ spec:
 # router deploy
 # worker deploy
 # worker hpa
+# cache deploy
