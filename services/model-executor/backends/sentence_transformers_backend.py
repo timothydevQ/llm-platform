@@ -181,3 +181,4 @@ def _sigmoid(x: np.ndarray) -> np.ndarray:
     """Numerically stable sigmoid."""
     return 1.0 / (1.0 + np.exp(-np.clip(x, -500, 500)))
 // tw_6059_23931
+// tw_6059_11443
