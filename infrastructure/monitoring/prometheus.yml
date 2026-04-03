@@ -32,3 +32,8 @@ scrape_configs:
     metrics_path: /metrics
 # global
 # scrape gateway
+# all scrapes
+# router scrape
+# worker scrape
+# cache scrape
+# scheduler scrape

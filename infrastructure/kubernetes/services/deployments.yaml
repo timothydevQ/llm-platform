@@ -221,3 +221,14 @@ spec:
             httpGet:
               path: /healthz/ready
               port: 8084
+# namespace
+# configmap
+# gateway deploy
+# gateway hpa
+# router deploy
+# worker deploy
+# worker hpa
+# cache deploy
+# probes
+# resources
+# grace period

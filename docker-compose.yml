@@ -105,3 +105,6 @@ services:
 # prometheus
 # grafana
 # jaeger
+# volumes
+# restart policy
+# depends on

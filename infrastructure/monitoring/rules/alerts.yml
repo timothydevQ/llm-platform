@@ -42,3 +42,6 @@ groups:
           summary: "Request queue depth is high"
 # latency
 # cache miss
+# worker error
+# cb rejections
+# queue depth
