@@ -123,3 +123,4 @@ jobs:
           git add infrastructure/kubernetes/ || true
           git diff --staged --quiet || git commit -m "chore: update image tags to ${{ github.sha }}"
           git push
+# triggers
