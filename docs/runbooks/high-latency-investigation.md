@@ -13,3 +13,4 @@ curl http://localhost:8082/v1/stats | jq .queue_depth
 
 ### 3. Check cache hit rate
 curl http://localhost:8084/v1/stats | jq .prompt_cache.metrics.hit_rate
+<!-- steps -->
