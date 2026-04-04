@@ -19,3 +19,4 @@ Should see fallback_used: true
 ### 4. Restore worker
 curl -X POST http://localhost:8083/v1/status \
   -d '{"status":"healthy"}'
+<!-- steps -->
