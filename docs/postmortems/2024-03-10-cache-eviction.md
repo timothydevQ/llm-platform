@@ -11,3 +11,4 @@ Embed cache sized for online traffic. Batch workloads require a separate non-com
 - Increase embed cache to 200k entries (done)
 - Add batch job rate limiting to prevent cache thrashing (in progress)
 <!-- timeline -->
+<!-- actions -->
