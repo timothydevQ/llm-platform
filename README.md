@@ -616,3 +616,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- observability -->
 <!-- failure scenarios -->
 <!-- scaling -->
+<!-- api reference -->
