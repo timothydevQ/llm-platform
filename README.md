@@ -615,3 +615,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- canary -->
 <!-- observability -->
 <!-- failure scenarios -->
+<!-- scaling -->
