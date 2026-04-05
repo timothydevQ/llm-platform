@@ -613,3 +613,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- batching -->
 <!-- streaming -->
 <!-- canary -->
+<!-- observability -->
