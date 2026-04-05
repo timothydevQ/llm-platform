@@ -608,3 +608,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- services table -->
 <!-- request lifecycle -->
 <!-- request lifecycle -->
+<!-- cost routing -->
