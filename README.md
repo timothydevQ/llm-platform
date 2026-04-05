@@ -610,3 +610,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- request lifecycle -->
 <!-- cost routing -->
 <!-- caching strategy -->
+<!-- batching -->
