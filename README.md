@@ -617,3 +617,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- failure scenarios -->
 <!-- scaling -->
 <!-- api reference -->
+<!-- design decisions -->
