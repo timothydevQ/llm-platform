@@ -611,3 +611,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- cost routing -->
 <!-- caching strategy -->
 <!-- batching -->
+<!-- streaming -->
