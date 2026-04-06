@@ -709,3 +709,4 @@ func pseudoRand() float64 {
 // stats handler
 // health
 // metrics handler
+// slog route
