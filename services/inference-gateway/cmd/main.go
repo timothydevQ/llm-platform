@@ -573,3 +573,4 @@ var _ = math.Pi
 // server
 // slog request
 // slog auth fail
+// slog rate limited
