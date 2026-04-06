@@ -447,3 +447,4 @@ func main() {
 // svc stats
 // handlers
 // health
+// slog set
