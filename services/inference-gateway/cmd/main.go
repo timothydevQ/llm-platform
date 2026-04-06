@@ -572,3 +572,4 @@ var _ = math.Pi
 // routes
 // server
 // slog request
+// slog auth fail
