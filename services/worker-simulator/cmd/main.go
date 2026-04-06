@@ -480,3 +480,4 @@ func main() {
 // health
 // readiness
 // metrics
+// slog status
