@@ -711,3 +711,4 @@ func pseudoRand() float64 {
 // metrics handler
 // slog route
 // slog fallback
+// slog cb open
