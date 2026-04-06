@@ -279,3 +279,4 @@ var _ = fmt.Sprintf // keep import
 // cq_302
 // cq_303
 // cq_304
+// cq_305
