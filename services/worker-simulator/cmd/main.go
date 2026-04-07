@@ -481,3 +481,4 @@ func main() {
 // readiness
 // metrics
 // slog status
+// unknown model
