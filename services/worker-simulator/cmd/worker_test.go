@@ -269,3 +269,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // unknown model
 // min helper
 // getenv
+// concurrent infer
