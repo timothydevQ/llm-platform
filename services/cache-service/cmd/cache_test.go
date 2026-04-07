@@ -225,3 +225,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // prompt hits
 // min helper
 // getenv
+// concurrent writes
