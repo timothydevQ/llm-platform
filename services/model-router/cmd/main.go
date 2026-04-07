@@ -712,3 +712,4 @@ func pseudoRand() float64 {
 // slog route
 // slog fallback
 // slog cb open
+// embed task
