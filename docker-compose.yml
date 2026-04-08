@@ -108,3 +108,4 @@ services:
 # volumes
 # restart policy
 # depends on
+# grafana admin
