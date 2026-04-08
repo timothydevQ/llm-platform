@@ -232,3 +232,4 @@ spec:
 # probes
 # resources
 # grace period
+# rolling update
