@@ -233,3 +233,4 @@ spec:
 # resources
 # grace period
 # rolling update
+# scheduler deploy
