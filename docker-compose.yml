@@ -109,3 +109,4 @@ services:
 # restart policy
 # depends on
 # grafana admin
+# jaeger env
