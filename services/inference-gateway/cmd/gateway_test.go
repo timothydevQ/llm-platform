@@ -230,3 +230,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // getenv
 // metrics snapshot
 // concurrent rl
+// chat messages ok
