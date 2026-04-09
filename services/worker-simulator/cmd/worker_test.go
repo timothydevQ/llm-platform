@@ -271,3 +271,4 @@ func TestGetEnv_Worker(t *testing.T) {
 // getenv
 // concurrent infer
 // chat content
+// embed vector
