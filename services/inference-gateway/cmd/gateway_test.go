@@ -231,3 +231,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // metrics snapshot
 // concurrent rl
 // chat messages ok
+// embed query ok
