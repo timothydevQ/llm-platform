@@ -232,3 +232,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // concurrent rl
 // chat messages ok
 // embed query ok
+// rerank ok
