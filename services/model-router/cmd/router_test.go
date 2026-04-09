@@ -269,3 +269,4 @@ func TestGetEnv_Router(t *testing.T) {
 // getenv
 // concurrent cb
 // models chat
+// models embed
