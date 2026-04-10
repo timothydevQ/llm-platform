@@ -12,3 +12,4 @@ Routing hierarchy: `cost_budget: low` or latency target < 300ms → small; `cost
 - gpt-small handles ~70% of traffic at $0.0002/1k tokens
 - ~85-90% cost reduction vs always using gpt-large
 <!-- decision -->
+<!-- consequences -->
