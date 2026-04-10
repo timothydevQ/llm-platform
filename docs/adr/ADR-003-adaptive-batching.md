@@ -11,3 +11,4 @@ Accumulate requests for up to 30ms or max batch size 16 before dispatching. Imme
 - Throughput increases 4-8x
 - Load shedding at 10k queue depth
 <!-- decision -->
+<!-- tradeoffs -->
