@@ -19,3 +19,4 @@ summary.json
 go.work.sum
 vendor/
 # go
+# k6
