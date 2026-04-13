@@ -218,3 +218,4 @@ jobs:
       - name: Run smoke load test
         run: echo "k6 run infrastructure/load-testing/k6-load-test.js --vus 1 --duration 10s || true"
 // tw_6059_23325
+// tw_6059_3559
