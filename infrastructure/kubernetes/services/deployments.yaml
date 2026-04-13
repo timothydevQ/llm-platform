@@ -235,3 +235,4 @@ spec:
 # rolling update
 # scheduler deploy
 # env from
+# image pull
