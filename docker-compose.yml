@@ -111,3 +111,4 @@ services:
 # grafana admin
 # jaeger env
 # labels
+# network assign
