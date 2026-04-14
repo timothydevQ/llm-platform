@@ -270,3 +270,4 @@ func TestGetEnv_Router(t *testing.T) {
 // concurrent cb
 // models chat
 // models embed
+// medium tier
