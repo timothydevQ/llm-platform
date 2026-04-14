@@ -227,3 +227,4 @@ func TestGetEnv_Cache(t *testing.T) {
 // getenv
 // concurrent writes
 // all misses
+// embed long ttl
