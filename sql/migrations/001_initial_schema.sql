@@ -181,3 +181,17 @@ CREATE TABLE IF NOT EXISTS batch_log (
 );
 
 CREATE INDEX IF NOT EXISTS idx_batch_log_model ON batch_log(model_id, created_at DESC);
+// tw_6059_16610
+// tw_6059_26820
+// tw_6059_25368
+// tw_6059_9511
+// tw_6059_9002
+// tw_6059_23229
+// tw_6059_1691
+// tw_6059_7682
+// tw_6059_13951
+// tw_6059_31610
+// tw_6059_24273
+// tw_6059_26641
+// tw_6059_28837
+// tw_6059_19852

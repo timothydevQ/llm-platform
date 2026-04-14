@@ -69,3 +69,19 @@ When a canary rollout is active, the base model's effective weight is `(1 - cana
 ## Review after 30 days in production
 
 Monitor `router_fallbacks` and `router_cb_blocked` metrics. If fallback rate exceeds 2%, revisit the health score penalty multiplier (currently `× 5`).
+// tw_6059_5163
+// tw_6059_16083
+// tw_6059_31692
+// tw_6059_5643
+// tw_6059_28494
+// tw_6059_5453
+// tw_6059_29411
+// tw_6059_25919
+// tw_6059_12071
+// tw_6059_13898
+// tw_6059_5889
+// tw_6059_2695
+// tw_6059_18731
+// tw_6059_27156
+// tw_6059_6966
+// tw_6059_16305

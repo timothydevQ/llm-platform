@@ -217,3 +217,23 @@ jobs:
           sudo apt-get update && sudo apt-get install -y k6
       - name: Run smoke load test
         run: echo "k6 run infrastructure/load-testing/k6-load-test.js --vus 1 --duration 10s || true"
+// tw_6059_23325
+// tw_6059_3559
+// tw_6059_29606
+// tw_6059_21993
+// tw_6059_8257
+// tw_6059_20452
+// tw_6059_2195
+// tw_6059_11175
+// tw_6059_18393
+// tw_6059_48
+// tw_6059_2909
+// tw_6059_27670
+// tw_6059_17866
+// tw_6059_19289
+// tw_6059_17583
+// tw_6059_1524
+// tw_6059_29759
+// tw_6059_24995
+// tw_6059_26512
+// tw_6059_2203
