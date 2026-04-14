@@ -233,3 +233,4 @@ func TestGatewayMetrics_Snapshot(t *testing.T) {
 // chat messages ok
 // embed query ok
 // rerank ok
+// bucket caps
