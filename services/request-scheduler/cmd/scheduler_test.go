@@ -251,3 +251,4 @@ func TestNewID_Scheduler(t *testing.T) {
 // new id
 // concurrent pq
 // load shed
+// avg batch
