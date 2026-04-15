@@ -112,3 +112,4 @@ services:
 # jaeger env
 # labels
 # network assign
+# loki
