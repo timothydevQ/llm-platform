@@ -628,3 +628,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- final -->
 <!-- contributing -->
 <!-- tech stack -->
+<!-- license -->
