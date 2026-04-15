@@ -21,3 +21,4 @@ curl -X POST http://localhost:8083/v1/status \
   -d '{"status":"healthy"}'
 <!-- steps -->
 <!-- metrics -->
+<!-- escalation -->
