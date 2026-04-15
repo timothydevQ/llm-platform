@@ -21,3 +21,4 @@ vendor/
 # go
 # k6
 # secrets
+# coverage
