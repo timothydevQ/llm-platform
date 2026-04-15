@@ -714,3 +714,4 @@ func pseudoRand() float64 {
 // slog cb open
 // embed task
 // final cleanup
+// v2 cost log
