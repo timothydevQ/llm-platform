@@ -9,3 +9,4 @@ One circuit breaker per model in the model router. 3 failures → open, 2 succes
 ## Rationale
 A global CB would prevent fallback routing. Per-model CBs allow routing to a different model when one is unhealthy.
 <!-- decision -->
+<!-- fallback -->
