@@ -38,3 +38,4 @@ scrape_configs:
 # cache scrape
 # scheduler scrape
 # eval
+# tls
