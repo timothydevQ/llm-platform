@@ -631,3 +631,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- license -->
 <!-- perf summary -->
 <!-- cost summary -->
+<!-- ci diagram -->
