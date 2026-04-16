@@ -630,3 +630,4 @@ See [docs/benchmarks/performance-results.md](docs/benchmarks/performance-results
 <!-- tech stack -->
 <!-- license -->
 <!-- perf summary -->
+<!-- cost summary -->
