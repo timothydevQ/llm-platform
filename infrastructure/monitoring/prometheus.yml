@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+rule_files:
+  - "rules/*.yml"
+scrape_configs:
+  - job_name: api-gateway
+    static_configs: [{targets: ["api-gateway:8080"]}]
+    metrics_path: /metrics
+  - job_name: router
+    static_configs: [{targets: ["router:8081"]}]
+    metrics_path: /metrics
+  - job_name: scheduler
+    static_configs: [{targets: ["scheduler:8082"]}]
+    metrics_path: /metrics
+  - job_name: control-plane
+    static_configs: [{targets: ["control-plane:8083"]}]
+    metrics_path: /metrics
+  - job_name: model-executor
+    static_configs: [{targets: ["model-executor:8085"]}]
+    metrics_path: /metrics

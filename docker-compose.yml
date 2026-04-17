@@ -1,0 +1,161 @@
+networks:
+  llm-net:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
+  api-gateway-data:
+  router-data:
+  scheduler-data:
+  control-plane-data:
+
+services:
+
+  # ── Model Executor (Python / gRPC) ─────────────────────────────────────────
+
+  model-executor:
+    build:
+      context: ./services/model-executor
+    environment:
+      GRPC_PORT:   "50051"
+      HTTP_PORT:   "8085"
+      EXECUTOR_ID: "executor-0"
+      MAX_WORKERS: "10"
+    ports:
+      - "50051:50051"
+      - "8085:8085"
+    networks: [llm-net]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8085/healthz/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ── Control Plane ──────────────────────────────────────────────────────────
+
+  control-plane:
+    build:
+      context: ./services/control-plane
+    environment:
+      HTTP_PORT:     "8083"
+      DB_PATH:       "/data/control-plane.db"
+      EXECUTOR_ADDR: "model-executor:50051"
+    ports:
+      - "8083:8083"
+    volumes:
+      - control-plane-data:/data
+    networks: [llm-net]
+    restart: unless-stopped
+    depends_on:
+      model-executor: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8083/healthz/ready"]
+      interval: 10s
+
+  # ── Router ─────────────────────────────────────────────────────────────────
+
+  router:
+    build:
+      context: ./services/router
+    environment:
+      GRPC_PORT:     "50052"
+      HTTP_PORT:     "8081"
+      DB_PATH:       "/data/router.db"
+      EXECUTOR_ADDR: "model-executor:50051"
+    ports:
+      - "50052:50052"
+      - "8081:8081"
+    volumes:
+      - router-data:/data
+    networks: [llm-net]
+    restart: unless-stopped
+    depends_on:
+      model-executor: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8081/healthz/ready"]
+      interval: 10s
+
+  # ── Scheduler ──────────────────────────────────────────────────────────────
+
+  scheduler:
+    build:
+      context: ./services/scheduler
+    environment:
+      GRPC_PORT:     "50053"
+      HTTP_PORT:     "8082"
+      DB_PATH:       "/data/scheduler.db"
+      EXECUTOR_ADDR: "model-executor:50051"
+    ports:
+      - "50053:50053"
+      - "8082:8082"
+    volumes:
+      - scheduler-data:/data
+    networks: [llm-net]
+    restart: unless-stopped
+    depends_on:
+      model-executor: { condition: service_healthy }
+
+  # ── API Gateway ────────────────────────────────────────────────────────────
+
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    environment:
+      HTTP_PORT:   "8080"
+      DB_PATH:     "/data/gateway.db"
+      ROUTER_ADDR: "router:50052"
+    ports:
+      - "8080:8080"
+    volumes:
+      - api-gateway-data:/data
+    networks: [llm-net]
+    restart: unless-stopped
+    depends_on:
+      router: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz/ready"]
+      interval: 10s
+
+  # ── Prometheus ─────────────────────────────────────────────────────────────
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infrastructure/monitoring/rules:/etc/prometheus/rules:ro
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+      - "--storage.tsdb.retention.time=15d"
+    ports:
+      - "9090:9090"
+    networks: [llm-net]
+
+  # ── Grafana ────────────────────────────────────────────────────────────────
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "admin"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks: [llm-net]
+    depends_on: [prometheus]
+
+  # ── Jaeger (distributed tracing) ───────────────────────────────────────────
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.58
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP gRPC
+    networks: [llm-net]

@@ -1,0 +1,102 @@
+syntax = "proto3";
+package platform.v1;
+option go_package = "github.com/timothydevQ/llm-platform/gen/platform/v1;platformv1";
+
+import "proto/inference/v1/inference.proto";
+
+// ─── Model registry ───────────────────────────────────────────────────────────
+
+message ModelDescriptor {
+  string                         model_id      = 1;
+  string                         version       = 2;
+  string                         name          = 3;
+  inference.v1.ModelTier         tier          = 4;
+  repeated inference.v1.TaskType capabilities  = 5;
+  double                         cost_per_1k   = 6;
+  int32                          avg_latency_ms = 7;
+  int32                          max_tokens    = 8;
+  string                         executor_addr = 9;
+  bool                           enabled       = 10;
+  map<string,string>             labels        = 11;
+}
+
+message RegisterModelRequest   { ModelDescriptor model   = 1; }
+message RegisterModelResponse  { string model_id = 1; bool created = 2; }
+message GetModelsRequest       { bool enabled_only = 1; }
+message GetModelsResponse      { repeated ModelDescriptor models = 1; }
+message SetModelEnabledRequest { string model_id = 1; bool enabled = 2; }
+message SetModelEnabledResponse{ bool ok = 1; }
+
+// ─── Rollout / canary ─────────────────────────────────────────────────────────
+
+message RolloutConfig {
+  string rollout_id     = 1;
+  string base_model_id  = 2;
+  string canary_model_id = 3;
+  double canary_pct     = 4;  // 0.0–1.0
+  bool   auto_rollback  = 5;
+  double max_p99_ratio  = 6;  // rollback if canary_p99 / base_p99 > threshold
+  double max_error_rate = 7;
+  bool   enabled        = 8;
+}
+
+message CreateRolloutRequest   { RolloutConfig config = 1; }
+message CreateRolloutResponse  { string rollout_id = 1; }
+message GetRolloutsRequest     {}
+message GetRolloutsResponse    { repeated RolloutConfig rollouts = 1; }
+message UpdateRolloutRequest   { RolloutConfig config = 1; }
+message UpdateRolloutResponse  { bool ok = 1; }
+
+// ─── Tenant ───────────────────────────────────────────────────────────────────
+
+message Tenant {
+  string   tenant_id       = 1;
+  string   name            = 2;
+  string   routing_mode    = 3; // "latency_optimized"|"cost_optimized"|"balanced"
+  repeated string allowed_models = 4; // empty = all
+  int32    rate_limit_rps  = 5;
+  int32    burst_limit     = 6;
+  bool     enabled         = 7;
+}
+
+message UpsertTenantRequest  { Tenant tenant = 1; }
+message UpsertTenantResponse { bool ok = 1; }
+message GetTenantRequest     { string tenant_id = 1; }
+message GetTenantResponse    { Tenant tenant = 1; }
+
+// ─── Quota ────────────────────────────────────────────────────────────────────
+
+message QuotaConfig {
+  string tenant_id          = 1;
+  int64  tokens_per_minute  = 2;
+  int64  tokens_per_day     = 3;
+  double budget_usd_per_day = 4;
+  int32  max_context_tokens = 5;
+}
+
+message UpsertQuotaRequest  { QuotaConfig quota = 1; }
+message UpsertQuotaResponse { bool ok = 1; }
+message GetQuotaRequest     { string tenant_id = 1; }
+message GetQuotaResponse    { QuotaConfig quota = 1; int64 used_today = 2; double spent_today = 3; }
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+
+service PlatformService {
+  // Model registry
+  rpc RegisterModel(RegisterModelRequest)     returns (RegisterModelResponse);
+  rpc GetModels(GetModelsRequest)             returns (GetModelsResponse);
+  rpc SetModelEnabled(SetModelEnabledRequest) returns (SetModelEnabledResponse);
+
+  // Rollout
+  rpc CreateRollout(CreateRolloutRequest)     returns (CreateRolloutResponse);
+  rpc GetRollouts(GetRolloutsRequest)         returns (GetRolloutsResponse);
+  rpc UpdateRollout(UpdateRolloutRequest)     returns (UpdateRolloutResponse);
+
+  // Tenant
+  rpc UpsertTenant(UpsertTenantRequest)       returns (UpsertTenantResponse);
+  rpc GetTenant(GetTenantRequest)             returns (GetTenantResponse);
+
+  // Quota
+  rpc UpsertQuota(UpsertQuotaRequest)         returns (UpsertQuotaResponse);
+  rpc GetQuota(GetQuotaRequest)               returns (GetQuotaResponse);
+}

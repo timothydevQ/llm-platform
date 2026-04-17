@@ -1,0 +1,64 @@
+syntax = "proto3";
+package execution.v1;
+option go_package = "github.com/timothydevQ/llm-platform/gen/execution/v1;executionv1";
+
+import "proto/inference/v1/inference.proto";
+
+// ─── Execution messages ───────────────────────────────────────────────────────
+
+message ExecuteRequest {
+  string                         request_id  = 1;
+  string                         model_id    = 2;
+  string                         model_version = 3;
+  inference.v1.TaskType          task_type   = 4;
+  string                         prompt      = 5;
+  repeated inference.v1.ChatMessage messages  = 6;
+  repeated string                documents   = 7;
+  string                         query       = 8;
+  int32                          max_tokens  = 9;
+  int64                          deadline_ms = 10; // unix ms; 0 = no deadline
+}
+
+message ExecuteResponse {
+  string          request_id   = 1;
+  string          model_id     = 2;
+  string          content      = 3;
+  repeated double embedding    = 4;
+  repeated double scores       = 5;
+  int32           tokens_input = 6;
+  int32           tokens_output = 7;
+  double          latency_ms   = 8;
+}
+
+message StreamChunk {
+  string request_id   = 1;
+  string token        = 2;
+  bool   done         = 3;
+  int32  tokens_out   = 4;
+}
+
+message HealthRequest {}
+message HealthResponse {
+  string  executor_id      = 1;
+  string  status           = 2; // "healthy"|"degraded"|"down"
+  repeated string model_ids = 3;
+  double  load_factor      = 4; // 0.0-1.0
+  int64   requests_served  = 5;
+  double  tokens_per_second = 6;
+  double  avg_latency_ms   = 7;
+}
+
+message SetStatusRequest {
+  string status      = 1;
+  double load_factor = 2;
+}
+message SetStatusResponse { string status = 1; }
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+
+service ExecutorService {
+  rpc Execute(ExecuteRequest)            returns (ExecuteResponse);
+  rpc ExecuteStream(ExecuteRequest)      returns (stream StreamChunk);
+  rpc Health(HealthRequest)              returns (HealthResponse);
+  rpc SetStatus(SetStatusRequest)        returns (SetStatusResponse);
+}
