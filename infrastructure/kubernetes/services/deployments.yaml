@@ -1,0 +1,223 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: llm-platform
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-config
+  namespace: llm-platform
+data:
+  LOG_LEVEL: "info"
+  CACHE_TTL_MINUTES: "30"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inference-gateway
+  namespace: llm-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inference-gateway
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: inference-gateway
+    spec:
+      containers:
+        - name: inference-gateway
+          image: ghcr.io/timothydevQ/llm-platform/inference-gateway:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: MODEL_ROUTER_URL
+              value: "http://model-router:8081"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: inference-gateway-hpa
+  namespace: llm-platform
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: inference-gateway
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-router
+  namespace: llm-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: model-router
+  template:
+    metadata:
+      labels:
+        app: model-router
+    spec:
+      containers:
+        - name: model-router
+          image: ghcr.io/timothydevQ/llm-platform/model-router:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: HTTP_PORT
+              value: "8081"
+            - name: CACHE_SERVICE_URL
+              value: "http://cache-service:8084"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8081
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-simulator
+  namespace: llm-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: worker-simulator
+  template:
+    metadata:
+      labels:
+        app: worker-simulator
+    spec:
+      containers:
+        - name: worker-simulator
+          image: ghcr.io/timothydevQ/llm-platform/worker-simulator:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: HTTP_PORT
+              value: "8083"
+          resources:
+            requests:
+              cpu: 500m
+              memory: 256Mi
+            limits:
+              cpu: 2000m
+              memory: 1Gi
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8083
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8083
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: worker-simulator-hpa
+  namespace: llm-platform
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: worker-simulator
+  minReplicas: 2
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-service
+  namespace: llm-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache-service
+  template:
+    metadata:
+      labels:
+        app: cache-service
+    spec:
+      containers:
+        - name: cache-service
+          image: ghcr.io/timothydevQ/llm-platform/cache-service:latest
+          ports:
+            - containerPort: 8084
+          env:
+            - name: HTTP_PORT
+              value: "8084"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8084
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8084

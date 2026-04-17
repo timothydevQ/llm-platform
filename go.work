@@ -1,0 +1,9 @@
+go 1.22
+
+use (
+	./services/inference-gateway
+	./services/model-router
+	./services/request-scheduler
+	./services/cache-service
+	./services/worker-simulator
+)

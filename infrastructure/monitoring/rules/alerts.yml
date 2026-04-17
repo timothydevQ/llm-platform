@@ -1,0 +1,42 @@
+groups:
+  - name: llm_platform
+    rules:
+      - alert: HighInferenceLatency
+        expr: gateway_routed > 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High inference latency detected"
+
+      - alert: HighCacheMissRate
+        expr: cache_prompt_hit_rate < 0.2
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Cache hit rate below 20%% — consider warming"
+
+      - alert: WorkerErrorRate
+        expr: rate(worker_errors_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Worker error rate elevated"
+
+      - alert: CircuitBreakerOpen
+        expr: router_cb_rejections > 10
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Circuit breaker rejecting requests"
+
+      - alert: QueueDepthHigh
+        expr: scheduler_enqueued - scheduler_requests_processed > 1000
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Request queue depth is high"

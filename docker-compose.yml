@@ -1,0 +1,98 @@
+networks:
+  llm-platform:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
+
+services:
+  inference-gateway:
+    build:
+      context: ./services/inference-gateway
+    environment:
+      HTTP_PORT: "8080"
+      MODEL_ROUTER_URL: http://model-router:8081
+    ports:
+      - "8080:8080"
+    networks: [llm-platform]
+    restart: unless-stopped
+    depends_on:
+      model-router: { condition: service_started }
+
+  model-router:
+    build:
+      context: ./services/model-router
+    environment:
+      HTTP_PORT: "8081"
+      CACHE_SERVICE_URL: http://cache-service:8084
+    ports:
+      - "8081:8081"
+    networks: [llm-platform]
+    restart: unless-stopped
+    depends_on:
+      worker-simulator: { condition: service_started }
+      cache-service: { condition: service_started }
+
+  request-scheduler:
+    build:
+      context: ./services/request-scheduler
+    environment:
+      HTTP_PORT: "8082"
+    ports:
+      - "8082:8082"
+    networks: [llm-platform]
+    restart: unless-stopped
+
+  worker-simulator:
+    build:
+      context: ./services/worker-simulator
+    environment:
+      HTTP_PORT: "8083"
+    ports:
+      - "8083:8083"
+    networks: [llm-platform]
+    restart: unless-stopped
+
+  cache-service:
+    build:
+      context: ./services/cache-service
+    environment:
+      HTTP_PORT: "8084"
+    ports:
+      - "8084:8084"
+    networks: [llm-platform]
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./infrastructure/monitoring/rules:/etc/prometheus/rules
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    ports:
+      - "9090:9090"
+    networks: [llm-platform]
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks: [llm-platform]
+    depends_on: [prometheus]
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"
+    networks: [llm-platform]
