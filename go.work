@@ -1,0 +1,9 @@
+go 1.22
+
+use (
+	./gen/go
+	./services/api-gateway
+	./services/router
+	./services/scheduler
+	./services/control-plane
+)

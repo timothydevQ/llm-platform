@@ -1,0 +1,48 @@
+syntax = "proto3";
+package scheduling.v1;
+option go_package = "github.com/timothydevQ/llm-platform/gen/scheduling/v1;schedulingv1";
+
+import "proto/inference/v1/inference.proto";
+import "proto/routing/v1/routing.proto";
+
+// ─── Scheduling messages ──────────────────────────────────────────────────────
+
+message ScheduleRequest {
+  inference.v1.InferenceRequest request  = 1;
+  routing.v1.RouteResponse      routing  = 2;
+}
+
+message ScheduleResponse {
+  inference.v1.InferenceResponse response = 1;
+}
+
+message ScheduleStreamRequest {
+  inference.v1.InferenceRequest request  = 1;
+  routing.v1.RouteResponse      routing  = 2;
+}
+
+message QueueStats {
+  string model_id     = 1;
+  int64  depth        = 2;
+  double avg_wait_ms  = 3;
+  int64  dispatched   = 4;
+  int64  dropped      = 5;
+  double avg_batch_sz = 6;
+}
+
+message SchedulerStatsResponse {
+  repeated QueueStats queues        = 1;
+  int64               total_enqueued = 2;
+  int64               total_dispatched = 3;
+  int64               total_dropped  = 4;
+  double              avg_batch_size = 5;
+  double              p99_wait_ms    = 6;
+}
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+
+service SchedulerService {
+  rpc Schedule(ScheduleRequest)             returns (ScheduleResponse);
+  rpc ScheduleStream(ScheduleStreamRequest) returns (stream inference.v1.StreamChunk);
+  rpc Stats(google.protobuf.Empty)          returns (SchedulerStatsResponse);
+}

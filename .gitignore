@@ -1,0 +1,51 @@
+# Go
+bin/
+*/bin/
+*.exe
+*.out
+coverage.out
+*.coverprofile
+go.work.sum
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+data/
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Docker
+volumes/
+
+# k6
+k6-results/
+summary.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/

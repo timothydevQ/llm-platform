@@ -1,0 +1,27 @@
+groups:
+  - name: llm_platform
+    rules:
+      - alert: HighErrorRate
+        expr: rate(gateway_errors[5m]) > 0.05
+        for: 2m
+        labels: {severity: critical}
+        annotations:
+          summary: "Gateway error rate > 5%"
+      - alert: SchedulerLoadShedding
+        expr: scheduler_load_shedded > 100
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: "Scheduler dropping requests under overload"
+      - alert: ExecutorDown
+        expr: up{job="model-executor"} == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: "Model executor is unreachable"
+      - alert: HighAdmitFailRate
+        expr: rate(gateway_admit_failed[5m]) > 10
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: "High quota/admission failure rate"

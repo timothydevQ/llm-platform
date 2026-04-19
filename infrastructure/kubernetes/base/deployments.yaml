@@ -1,0 +1,329 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: llm-platform
+  labels:
+    app.kubernetes.io/managed-by: "kustomize"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-config
+  namespace: llm-platform
+data:
+  LOG_LEVEL: "info"
+  GRPC_GO_LOG_VERBOSITY_LEVEL: "99"
+---
+# ── Model Executor ────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-executor
+  namespace: llm-platform
+  labels:
+    app: model-executor
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: model-executor}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  template:
+    metadata:
+      labels:
+        app: model-executor
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8085"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: model-executor
+          image: ghcr.io/timothydevQ/llm-platform/model-executor:latest
+          ports:
+            - {name: grpc, containerPort: 50051}
+            - {name: http, containerPort: 8085}
+          env:
+            - {name: GRPC_PORT, value: "50051"}
+            - {name: HTTP_PORT, value: "8085"}
+            - {name: MAX_WORKERS, value: "10"}
+            - name: EXECUTOR_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            requests: {cpu: "500m", memory: "512Mi"}
+            limits:   {cpu: "2000m", memory: "2Gi"}
+          livenessProbe:
+            httpGet: {path: /healthz/live, port: 8085}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: {path: /healthz/ready, port: 8085}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-executor
+  namespace: llm-platform
+spec:
+  selector: {app: model-executor}
+  ports:
+    - {name: grpc, port: 50051, targetPort: 50051}
+    - {name: http, port: 8085, targetPort: 8085}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: model-executor-hpa
+  namespace: llm-platform
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: model-executor}
+  minReplicas: 2
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource: {name: cpu, target: {type: Utilization, averageUtilization: 60}}
+---
+# ── Router ────────────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: router
+  namespace: llm-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: router}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  template:
+    metadata:
+      labels:
+        app: router
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+    spec:
+      containers:
+        - name: router
+          image: ghcr.io/timothydevQ/llm-platform/router:latest
+          ports:
+            - {name: grpc, containerPort: 50052}
+            - {name: http, containerPort: 8081}
+          env:
+            - {name: GRPC_PORT,     value: "50052"}
+            - {name: HTTP_PORT,     value: "8081"}
+            - {name: DB_PATH,       value: "/data/router.db"}
+            - {name: EXECUTOR_ADDR, value: "model-executor:50051"}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+          resources:
+            requests: {cpu: "200m", memory: "128Mi"}
+            limits:   {cpu: "1000m", memory: "512Mi"}
+          livenessProbe:
+            httpGet: {path: /healthz/live, port: 8081}
+          readinessProbe:
+            httpGet: {path: /healthz/ready, port: 8081}
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: router
+  namespace: llm-platform
+spec:
+  selector: {app: router}
+  ports:
+    - {name: grpc, port: 50052, targetPort: 50052}
+    - {name: http, port: 8081, targetPort: 8081}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: router-hpa
+  namespace: llm-platform
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: router}
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource: {name: cpu, target: {type: Utilization, averageUtilization: 70}}
+---
+# ── Scheduler ─────────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler
+  namespace: llm-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: scheduler}
+  template:
+    metadata:
+      labels:
+        app: scheduler
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8082"
+    spec:
+      containers:
+        - name: scheduler
+          image: ghcr.io/timothydevQ/llm-platform/scheduler:latest
+          ports:
+            - {name: grpc, containerPort: 50053}
+            - {name: http, containerPort: 8082}
+          env:
+            - {name: GRPC_PORT,     value: "50053"}
+            - {name: HTTP_PORT,     value: "8082"}
+            - {name: DB_PATH,       value: "/data/scheduler.db"}
+            - {name: EXECUTOR_ADDR, value: "model-executor:50051"}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+          resources:
+            requests: {cpu: "200m", memory: "128Mi"}
+            limits:   {cpu: "1000m", memory: "512Mi"}
+          livenessProbe:
+            httpGet: {path: /healthz/live, port: 8082}
+          readinessProbe:
+            httpGet: {path: /healthz/ready, port: 8082}
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scheduler
+  namespace: llm-platform
+spec:
+  selector: {app: scheduler}
+  ports:
+    - {name: grpc, port: 50053, targetPort: 50053}
+    - {name: http, port: 8082, targetPort: 8082}
+---
+# ── Control Plane ─────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: control-plane
+  namespace: llm-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: control-plane}
+  template:
+    metadata:
+      labels:
+        app: control-plane
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8083"
+    spec:
+      containers:
+        - name: control-plane
+          image: ghcr.io/timothydevQ/llm-platform/control-plane:latest
+          ports:
+            - {name: http, containerPort: 8083}
+          env:
+            - {name: HTTP_PORT,     value: "8083"}
+            - {name: DB_PATH,       value: "/data/control-plane.db"}
+            - {name: EXECUTOR_ADDR, value: "model-executor:50051"}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+          resources:
+            requests: {cpu: "100m", memory: "128Mi"}
+            limits:   {cpu: "500m", memory: "512Mi"}
+          livenessProbe:
+            httpGet: {path: /healthz/live, port: 8083}
+          readinessProbe:
+            httpGet: {path: /healthz/ready, port: 8083}
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: control-plane
+  namespace: llm-platform
+spec:
+  selector: {app: control-plane}
+  ports:
+    - {name: http, port: 8083, targetPort: 8083}
+---
+# ── API Gateway ───────────────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: llm-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: api-gateway}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxUnavailable: 0, maxSurge: 1}
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+        - name: api-gateway
+          image: ghcr.io/timothydevQ/llm-platform/api-gateway:latest
+          ports:
+            - {name: http, containerPort: 8080}
+          env:
+            - {name: HTTP_PORT,   value: "8080"}
+            - {name: DB_PATH,     value: "/data/gateway.db"}
+            - {name: ROUTER_ADDR, value: "router:50052"}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+          resources:
+            requests: {cpu: "100m", memory: "64Mi"}
+            limits:   {cpu: "500m", memory: "256Mi"}
+          livenessProbe:
+            httpGet: {path: /healthz/live, port: 8080}
+          readinessProbe:
+            httpGet: {path: /healthz/ready, port: 8080}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+  namespace: llm-platform
+spec:
+  type: LoadBalancer
+  selector: {app: api-gateway}
+  ports:
+    - {name: http, port: 80, targetPort: 8080}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-gateway-hpa
+  namespace: llm-platform
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: api-gateway}
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource: {name: cpu, target: {type: Utilization, averageUtilization: 70}}

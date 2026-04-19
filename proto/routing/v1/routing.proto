@@ -1,0 +1,44 @@
+syntax = "proto3";
+package routing.v1;
+option go_package = "github.com/timothydevQ/llm-platform/gen/routing/v1;routingv1";
+
+import "proto/inference/v1/inference.proto";
+
+// ─── Routing messages ─────────────────────────────────────────────────────────
+
+message RouteRequest {
+  inference.v1.InferenceRequest request = 1;
+}
+
+message CandidateScore {
+  string model_id        = 1;
+  string model_version   = 2;
+  string executor_addr   = 3;
+  double total_score     = 4;
+  double latency_score   = 5;
+  double cost_score      = 6;
+  double health_score    = 7;
+  double queue_score     = 8;
+  double policy_score    = 9;
+  double rollout_weight  = 10;
+  string reason          = 11;
+}
+
+message RouteResponse {
+  string               request_id     = 1;
+  string               trace_id       = 2;
+  CandidateScore       primary        = 3;
+  repeated CandidateScore fallbacks   = 4;
+  string               routing_mode   = 5; // "latency"|"cost"|"balanced"
+  bool                 is_canary      = 6;
+}
+
+message RoutingMode {
+  string mode = 1; // "latency_optimized" | "cost_optimized" | "balanced"
+}
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+
+service RouterService {
+  rpc Route(RouteRequest) returns (RouteResponse);
+}

@@ -1,0 +1,86 @@
+syntax = "proto3";
+package inference.v1;
+option go_package = "github.com/timothydevQ/llm-platform/gen/inference/v1;inferencev1";
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum TaskType {
+  TASK_UNSPECIFIED = 0;
+  TASK_CHAT        = 1;
+  TASK_SUMMARIZE   = 2;
+  TASK_EMBED       = 3;
+  TASK_RERANK      = 4;
+  TASK_CLASSIFY    = 5;
+  TASK_MODERATE    = 6;
+}
+
+enum ModelTier {
+  TIER_UNSPECIFIED = 0;
+  TIER_SMALL       = 1;  // fast/cheap — p95 < 300ms
+  TIER_MEDIUM      = 2;  // balanced  — p95 < 800ms
+  TIER_LARGE       = 3;  // powerful  — p95 < 3000ms
+}
+
+enum Priority {
+  PRIORITY_LOW     = 0;
+  PRIORITY_NORMAL  = 1;
+  PRIORITY_HIGH    = 2;
+  PRIORITY_CRITICAL = 3;
+}
+
+// ─── Core messages ────────────────────────────────────────────────────────────
+
+message ChatMessage {
+  string role    = 1;
+  string content = 2;
+}
+
+message InferenceRequest {
+  string   request_id        = 1;
+  string   idempotency_key   = 2;
+  TaskType task_type         = 3;
+  string   prompt            = 4;
+  repeated ChatMessage messages = 5;
+  repeated string documents  = 6;
+  string   query             = 7;
+  int32    max_tokens        = 8;
+  bool     stream            = 9;
+  Priority priority          = 10;
+  string   cost_budget       = 11;  // "low" | "medium" | "high"
+  int32    latency_target_ms = 12;
+  string   tenant_id         = 13;
+  string   api_key_id        = 14;
+  map<string,string> metadata = 15;
+  int64    deadline_unix_ms  = 16;
+  int64    received_at_ms    = 17;
+}
+
+message InferenceResponse {
+  string    request_id    = 1;
+  string    trace_id      = 2;
+  TaskType  task_type     = 3;
+  string    model_id      = 4;
+  string    model_version = 5;
+  ModelTier model_tier    = 6;
+  string    content       = 7;
+  repeated double embedding = 8;
+  repeated double scores    = 9;
+  int32     tokens_input  = 10;
+  int32     tokens_output = 11;
+  double    latency_ms    = 12;
+  double    queue_wait_ms = 13;
+  bool      cached        = 14;
+  bool      fallback_used = 15;
+  bool      is_canary     = 16;
+  double    cost_usd      = 17;
+  string    executor_id   = 18;
+}
+
+message StreamChunk {
+  string request_id  = 1;
+  string trace_id    = 2;
+  string token       = 3;
+  bool   done        = 4;
+  int32  tokens_out  = 5;
+  double latency_ms  = 6;
+}
